@@ -8,7 +8,7 @@ const map = new mapboxgl.Map({
 
 map.addControl(new mapboxgl.NavigationControl());
 
-
+console.log(pets);
 
 
 map.on('load', function () {
@@ -122,11 +122,11 @@ map.on('load', function () {
             .addTo(map);
     });
 
-    map.on('mouseenter', 'clusters', function () {
-        map.getCanvas().style.cursor = 'pointer';
-    });
-    map.on('mouseleave', 'clusters', function () {
-        map.getCanvas().style.cursor = '';
-    });
+    // map.on('mouseenter', 'clusters', function () {
+    //     map.getCanvas().style.cursor = 'pointer';
+    // });
+    // map.on('mouseleave', 'clusters', function () {
+    //     map.getCanvas().style.cursor = '';
+    // });
 });
 
