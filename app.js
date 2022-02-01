@@ -21,7 +21,7 @@ const reviewRoutes = require('./routes/reviews');
 
 const MongoDBStore = require("connect-mongo")(session);
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:127.0.0.1/pet-shelter';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/pet-shelter';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
