@@ -1,4 +1,5 @@
 const Pet = require('../models/pet');
+const Shelter = require('../models/shelter');
 const Review = require('../models/review');
 
 module.exports.createReview = async (req, res) => {

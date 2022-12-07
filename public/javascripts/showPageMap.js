@@ -14,7 +14,7 @@ new mapboxgl.Marker()
     .setPopup(
         new mapboxgl.Popup({ offset: 25 })
             .setHTML(
-                `<h3>${pet.name}</h3><p>${pet.location}</p>`
+                `<h3>${shelter.name}</h3><p>${shelter.location}</p>`
             )
     )
     .addTo(map)

@@ -33,6 +33,18 @@ module.exports.petSchema = Joi.object({
     deleteImages: Joi.array()
 });
 
+module.exports.shelterSchema = Joi.object({
+    shelter: Joi.object({
+        name: Joi.string().required().escapeHTML(),
+        phone: Joi.number().required().min(0),
+        location: Joi.string().required().escapeHTML(),
+        address: Joi.string().required().escapeHTML(),
+        email: Joi.string().required().escapeHTML(),
+        description: Joi.string().required().escapeHTML()
+    }).required(),
+    deleteImages: Joi.array()
+});
+
 module.exports.reviewSchema = Joi.object({
     review: Joi.object({
         body: Joi.string().required().escapeHTML()

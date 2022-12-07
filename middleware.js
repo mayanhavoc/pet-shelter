@@ -1,6 +1,7 @@
-const { petSchema, reviewSchema } = require('./schemas.js');
+const { petSchema, reviewSchema, shelterSchema } = require('./schemas.js');
 const ExpressError = require('./utils/ExpressError');
 const Pet = require('./models/pet');
+const Shelter = require('./models/shelter');
 const Review = require('./models/review');
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -14,6 +15,17 @@ module.exports.isLoggedIn = (req, res, next) => {
 
 module.exports.validatePet = (req, res, next) => {
     const { error } = petSchema.validate(req.body);
+    console.log(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
+}
+
+module.exports.validateShelter = (req, res, next) => {
+    const { error } = shelterSchema.validate(req.body);
     console.log(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(',')

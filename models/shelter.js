@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 const Review = require('./review')
 const Schema = mongoose.Schema;
 
-
-// https://res.cloudinary.com/douqbebwk/image/upload/w_300/v1600113904/YelpCamp/gxgle1ovzd2f3dgcpass.png
-
 const ImageSchema = new Schema({
     url: String,
     filename: String
@@ -16,7 +13,7 @@ ImageSchema.virtual('thumbnail').get(function () {
 
 const opts = { toJSON: { virtuals: true } };
 
-const PetSchema = new Schema({
+const ShelterSchema = new Schema({
     name: String,
     images: [ImageSchema],
     geometry: {
@@ -30,9 +27,11 @@ const PetSchema = new Schema({
             required: true
         }
     },
-    price: Number,
     description: String,
     location: String,
+    address: String,
+    phone: String,
+    email: String,
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -45,14 +44,13 @@ const PetSchema = new Schema({
     ]
 }, opts);
 
-
-PetSchema.virtual('properties.popUpMarkup').get(function () {
+ShelterSchema.virtual('properties.popUpMarkup').get(function () {
     return `
-    <strong><a href="/pets/${this._id}">${this.name}</a><strong>
+    <strong><a href="/shelter/${this._id}">${this.name}</a><strong>
     <p>${this.description.substring(0, 20)}...</p>`
 });
 
-PetSchema.post('findOneAndDelete', async function (doc) {
+ShelterSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {
         await Review.deleteMany({
             _id: {
@@ -62,4 +60,4 @@ PetSchema.post('findOneAndDelete', async function (doc) {
     }
 })
 
-module.exports = mongoose.model('Pet', PetSchema);
+module.exports = mongoose.model('Shelter', ShelterSchema);

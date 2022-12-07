@@ -17,6 +17,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./routes/users');
 const petRoutes = require('./routes/pets');
+const shelterRoutes = require('./routes/shelters')
 const reviewRoutes = require('./routes/reviews');
 
 const MongoDBStore = require("connect-mongo")(session);
@@ -140,8 +141,10 @@ app.use((req, res, next) => {
 
 
 app.use('/', userRoutes);
-app.use('/pets', petRoutes)
-app.use('/pets/:id/reviews', reviewRoutes)
+app.use('/pets', petRoutes);
+app.use('/shelters', shelterRoutes);
+app.use('/pets/:id/reviews', reviewRoutes);
+app.use('/shelters/:id/reviews', reviewRoutes);
 
 
 app.get('/', (req, res) => {
